@@ -3,6 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package InterfazG;
+import colecciones.BaseDatos;
+import modelos.Producto;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -18,7 +24,29 @@ public class CrudProductos extends javax.swing.JFrame {
     public CrudProductos() {
         initComponents();
     }
+    public void mostrarProductos() {
 
+    DefaultTableModel modelo =
+    (DefaultTableModel)
+    tablaProductos.getModel();
+
+    modelo.setRowCount(0);
+
+    for (Producto p :
+            BaseDatos.listaProductos) {
+
+        Object fila[] = {
+
+            p.getId(),
+            p.getNombre(),
+            p.getArtista(),
+            p.getPrecio(),
+            p.getStock()
+        };
+
+        modelo.addRow(fila);
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,21 +56,552 @@ public class CrudProductos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        txtID = new javax.swing.JTextField();
+        txtAlbum = new javax.swing.JTextField();
+        txtArtista = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
+        txtStock = new javax.swing.JTextField();
+        lblArtista = new javax.swing.JLabel();
+        lblAlbum = new javax.swing.JLabel();
+        label = new javax.swing.JLabel();
+        jlabel4 = new javax.swing.JLabel();
+        jlabel5 = new javax.swing.JLabel();
+        btnAgregar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaProductos = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
+            }
+        });
+
+        lblArtista.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
+        lblArtista.setForeground(new java.awt.Color(51, 0, 255));
+        lblArtista.setText("ID");
+
+        lblAlbum.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
+        lblAlbum.setForeground(new java.awt.Color(51, 0, 255));
+        lblAlbum.setText("Album");
+
+        label.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
+        label.setForeground(new java.awt.Color(51, 0, 255));
+        label.setText("Artista");
+
+        jlabel4.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
+        jlabel4.setForeground(new java.awt.Color(51, 0, 255));
+        jlabel4.setText("Precio");
+
+        jlabel5.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
+        jlabel5.setForeground(new java.awt.Color(51, 0, 255));
+        jlabel5.setText("Stock");
+
+        btnAgregar.setBackground(new java.awt.Color(51, 0, 255));
+        btnAgregar.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
+        btnBuscar.setBackground(new java.awt.Color(51, 0, 255));
+        btnBuscar.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        btnEditar.setBackground(new java.awt.Color(51, 0, 255));
+        btnEditar.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
+        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setBackground(new java.awt.Color(255, 0, 0));
+        btnEliminar.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Album", "Artista", "Precio", "Cantidad"
+            }
+        ));
+        tablaProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaProductosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tablaProductos);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(67, 67, 67)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 48, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtID)
+                            .addComponent(txtStock, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                            .addComponent(txtPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                            .addComponent(txtArtista, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                            .addComponent(txtAlbum, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                            .addComponent(lblArtista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblAlbum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jlabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(lblArtista)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblAlbum)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtArtista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jlabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jlabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregar)
+                    .addComponent(btnBuscar)
+                    .addComponent(btnEditar)
+                    .addComponent(btnEliminar))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+         try {
+
+        if(txtID.getText().isEmpty() ||
+           txtAlbum.getText().isEmpty() ||
+           txtArtista.getText().isEmpty() ||
+           txtPrecio.getText().isEmpty() ||
+           txtStock.getText().isEmpty()){
+
+            JOptionPane.showMessageDialog(
+            this,
+            "Completa todos los campos"
+            );
+
+            return;
+        }
+
+        int id =
+        Integer.parseInt(txtID.getText());
+
+        String nombre =
+        txtAlbum.getText();
+
+        String artista =
+        txtArtista.getText();
+
+        double precio =
+        Double.parseDouble(
+        txtPrecio.getText());
+
+        int stock =
+        Integer.parseInt(
+        txtStock.getText());
+
+        Producto p = new Producto(
+        id,
+        nombre,
+        artista,
+        precio,
+        stock
+        );
+
+        BaseDatos.listaProductos.add(p);
+
+        BaseDatos.mapaProductos.put(id, p);
+
+        mostrarProductos();
+
+        txtID.setText("");
+        txtAlbum.setText("");
+        txtArtista.setText("");
+        txtPrecio.setText("");
+        txtStock.setText("");
+
+        JOptionPane.showMessageDialog(
+        this,
+        "Producto agregado"
+        );
+
+    } catch (NumberFormatException e) {
+
+        JOptionPane.showMessageDialog(
+        this,
+        "ID, Precio y Stock deben ser números"
+        );
+    }
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String artistaBuscar =
+    JOptionPane.showInputDialog(
+    this,
+    "Ingresa el nombre del artista:"
+    );
+
+    if (artistaBuscar == null
+    || artistaBuscar.isEmpty()) {
+
+        return;
+    }
+
+    boolean encontrado = false;
+
+    for (Producto p :
+    BaseDatos.listaProductos) {
+
+        if (p.getArtista()
+        .equalsIgnoreCase(
+        artistaBuscar)) {
+
+            txtID.setText(
+            String.valueOf(p.getId()));
+
+            txtAlbum.setText(
+            p.getNombre());
+
+            txtArtista.setText(
+            p.getArtista());
+
+            txtPrecio.setText(
+            String.valueOf(p.getPrecio()));
+
+            txtStock.setText(
+            String.valueOf(p.getStock()));
+
+            encontrado = true;
+
+            break;
+        }
+    }
+
+    if (!encontrado) {
+
+        JOptionPane.showMessageDialog(
+        this,
+        "Artista no encontrado"
+        );
+    }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        try {
+
+        int id =
+        Integer.parseInt(txtID.getText());
+
+        for (Producto p :
+        BaseDatos.listaProductos) {
+
+            if (p.getId() == id) {
+
+                p.setNombre(
+                txtAlbum.getText());
+
+                p.setArtista(
+                txtArtista.getText());
+
+                p.setPrecio(
+                Double.parseDouble(
+                txtPrecio.getText()));
+
+                p.setStock(
+                Integer.parseInt(
+                txtStock.getText()));
+            }
+        }
+
+        mostrarProductos();
+
+        txtID.setText("");
+        txtAlbum.setText("");
+        txtArtista.setText("");
+        txtPrecio.setText("");
+        txtStock.setText("");
+
+        JOptionPane.showMessageDialog(
+        this,
+        "Producto actualizado"
+        );
+
+    } catch (Exception e) {
+
+        JOptionPane.showMessageDialog(
+        this,
+        "Error al actualizar"
+        );
+    }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
+        int fila =
+    tablaProductos.getSelectedRow();
+
+    if (fila != -1) {
+
+        txtID.setText(
+        tablaProductos.getValueAt(
+        fila, 0).toString());
+
+        txtAlbum.setText(
+        tablaProductos.getValueAt(
+        fila, 1).toString());
+
+        txtArtista.setText(
+        tablaProductos.getValueAt(
+        fila, 2).toString());
+
+        txtPrecio.setText(
+        tablaProductos.getValueAt(
+        fila, 3).toString());
+
+        txtStock.setText(
+        tablaProductos.getValueAt(
+        fila, 4).toString());
+    }
+    }//GEN-LAST:event_tablaProductosMouseClicked
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+         try {
+
+        if (txtID.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+            this,
+            "Selecciona un producto de la tabla"
+            );
+
+            return;
+        }
+
+        int confirmacion =
+        JOptionPane.showConfirmDialog(
+        this,
+        "¿Deseas eliminar este producto?",
+        "Confirmar eliminación",
+        JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirmacion ==
+        JOptionPane.YES_OPTION) {
+
+            int id =
+            Integer.parseInt(
+            txtID.getText());
+
+            BaseDatos.listaProductos
+            .removeIf(
+            p -> p.getId() == id
+            );
+
+            BaseDatos.mapaProductos.remove(id);
+
+            mostrarProductos();
+
+            txtID.setText("");
+            txtAlbum.setText("");
+            txtArtista.setText("");
+            txtPrecio.setText("");
+            txtStock.setText("");
+
+            JOptionPane.showMessageDialog(
+            this,
+            "Producto eliminado"
+            );
+        }
+
+    } catch (Exception e) {
+
+        JOptionPane.showMessageDialog(
+        this,
+        "Error al eliminar"
+        );
+    }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +629,22 @@ public class CrudProductos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel jlabel4;
+    private javax.swing.JLabel jlabel5;
+    private javax.swing.JLabel label;
+    private javax.swing.JLabel lblAlbum;
+    private javax.swing.JLabel lblArtista;
+    private javax.swing.JTable tablaProductos;
+    private javax.swing.JTextField txtAlbum;
+    private javax.swing.JTextField txtArtista;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtStock;
     // End of variables declaration//GEN-END:variables
 }
