@@ -91,6 +91,12 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Contraseña");
 
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -131,6 +137,13 @@ public class Login extends javax.swing.JFrame {
         btnIngresar.setFont(new java.awt.Font("Bebas Neue", 0, 14)); // NOI18N
         btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
         btnIngresar.setText("Ingresar");
+        btnIngresar.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                btnIngresarInputMethodTextChanged(evt);
+            }
+        });
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarActionPerformed(evt);
@@ -177,6 +190,17 @@ public class Login extends javax.swing.JFrame {
         );
     }
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnIngresarInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_btnIngresarInputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIngresarInputMethodTextChanged
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+    btnIngresarActionPerformed(null);
+}
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordKeyPressed
 
     /**
      * @param args the command line arguments
