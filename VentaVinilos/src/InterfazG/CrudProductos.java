@@ -406,6 +406,12 @@ public class CrudProductos extends javax.swing.JFrame {
         this,
         "Producto agregado"
         );
+        
+        Principal principal = new Principal();
+
+        principal.setVisible(true);
+
+        this.dispose();
 
     } catch (NumberFormatException e) {
 

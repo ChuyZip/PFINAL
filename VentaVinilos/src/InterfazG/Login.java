@@ -151,7 +151,9 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-         String usuario = txtUsuario.getText();
+         
+        
+        String usuario = txtUsuario.getText();
 
     String password =
     String.valueOf(txtPassword.getPassword());
