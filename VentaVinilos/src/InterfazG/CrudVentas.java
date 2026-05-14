@@ -90,8 +90,9 @@ public class CrudVentas extends javax.swing.JFrame {
         tfTotal.setEditable(false);
         tfTotal.addActionListener(this::tfTotalActionPerformed);
 
+        btnVender.setBackground(new java.awt.Color(51, 0, 255));
         btnVender.setFont(jLabel1.getFont());
-        btnVender.setForeground(new java.awt.Color(51, 51, 255));
+        btnVender.setForeground(new java.awt.Color(255, 255, 255));
         btnVender.setText("Realizar Venta");
         btnVender.addActionListener(this::btnVenderActionPerformed);
 
