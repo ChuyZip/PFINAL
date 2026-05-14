@@ -7,8 +7,7 @@ import colecciones.BaseDatos;
 import modelos.Producto;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import java.util.Collections;
-import java.util.Comparator;
+
 
 /**
  *
@@ -23,6 +22,12 @@ public class CrudProductos extends javax.swing.JFrame {
      */
     public CrudProductos() {
         initComponents();
+        setLocationRelativeTo(null);
+        
+        setDefaultCloseOperation(
+        javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+    ); 
+       
         mostrarProductos();
     }
     public void mostrarProductos() {
@@ -357,10 +362,7 @@ public class CrudProductos extends javax.swing.JFrame {
            txtPrecio.getText().isEmpty() ||
            txtStock.getText().isEmpty()){
 
-            JOptionPane.showMessageDialog(
-            this,
-            "Completa todos los campos"
-            );
+            JOptionPane.showMessageDialog(null,"Completa todos los campos");
 
             return;
         }
@@ -402,10 +404,7 @@ public class CrudProductos extends javax.swing.JFrame {
         txtPrecio.setText("");
         txtStock.setText("");
 
-        JOptionPane.showMessageDialog(
-        this,
-        "Producto agregado"
-        );
+        JOptionPane.showMessageDialog(null,"Producto agregado");
         
         Principal principal = new Principal();
 
@@ -415,19 +414,13 @@ public class CrudProductos extends javax.swing.JFrame {
 
     } catch (NumberFormatException e) {
 
-        JOptionPane.showMessageDialog(
-        this,
-        "ID, Precio y Stock deben ser números"
-        );
+        JOptionPane.showMessageDialog(null,"ID, Precio y Stock deben ser números");
     }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        String artistaBuscar =
-    JOptionPane.showInputDialog(
-    this,
-    "Ingresa el nombre del artista:"
-    );
+        String artistaBuscar = 
+        JOptionPane.showInputDialog(null,"Ingresa el nombre del artista:");
 
     if (artistaBuscar == null
     || artistaBuscar.isEmpty()) {
@@ -458,6 +451,18 @@ public class CrudProductos extends javax.swing.JFrame {
 
             txtStock.setText(
             String.valueOf(p.getStock()));
+            
+             // SELECCIONAR FILA EN LA TABLA
+            int fila =
+            BaseDatos.listaProductos.indexOf(p);
+
+            tablaProductos.setRowSelectionInterval(
+            fila, fila);
+
+            tablaProductos.scrollRectToVisible(
+            tablaProductos.getCellRect(
+            fila, 0, true)
+            );
 
             encontrado = true;
 
@@ -468,7 +473,7 @@ public class CrudProductos extends javax.swing.JFrame {
     if (!encontrado) {
 
         JOptionPane.showMessageDialog(
-        this,
+        null,
         "Artista no encontrado"
         );
     }
@@ -510,14 +515,14 @@ public class CrudProductos extends javax.swing.JFrame {
         txtStock.setText("");
 
         JOptionPane.showMessageDialog(
-        this,
+        null,
         "Producto actualizado"
         );
 
     } catch (Exception e) {
 
         JOptionPane.showMessageDialog(
-        this,
+        null,
         "Error al actualizar"
         );
     }
@@ -557,7 +562,7 @@ public class CrudProductos extends javax.swing.JFrame {
         if (txtID.getText().isEmpty()) {
 
             JOptionPane.showMessageDialog(
-            this,
+            null,
             "Selecciona un producto de la tabla"
             );
 
@@ -566,7 +571,7 @@ public class CrudProductos extends javax.swing.JFrame {
 
         int confirmacion =
         JOptionPane.showConfirmDialog(
-        this,
+        null,
         "¿Deseas eliminar este producto?",
         "Confirmar eliminación",
         JOptionPane.YES_NO_OPTION
@@ -595,7 +600,7 @@ public class CrudProductos extends javax.swing.JFrame {
             txtStock.setText("");
 
             JOptionPane.showMessageDialog(
-            this,
+            null,
             "Producto eliminado"
             );
         }
@@ -603,7 +608,7 @@ public class CrudProductos extends javax.swing.JFrame {
     } catch (Exception e) {
 
         JOptionPane.showMessageDialog(
-        this,
+        null,
         "Error al eliminar"
         );
     }

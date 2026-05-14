@@ -19,7 +19,9 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        setLocationRelativeTo(null);
         jPanel1.setOpaque(true);
+        
     }
 
     /**
@@ -170,7 +172,7 @@ public class Login extends javax.swing.JFrame {
     }else{
 
         JOptionPane.showMessageDialog(
-        this,
+        null,
         "Usuario o contraseña incorrectos"
         );
     }

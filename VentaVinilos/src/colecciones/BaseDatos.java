@@ -31,6 +31,8 @@ public class BaseDatos {
         String artista,
         double precio,
         int stock
+            
+     
     ){
 
         Producto p = new Producto(

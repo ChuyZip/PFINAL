@@ -15,6 +15,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -37,6 +38,9 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        setLocationRelativeTo(null);
+        
+        
          jPanel8.setLayout(new GridLayout(0, 3, 15, 15));
         mostrarProductos();
         
@@ -84,6 +88,7 @@ public class Principal extends javax.swing.JFrame {
         // NOMBRE
         JLabel lblNombre =
             new JLabel(p.getNombre());
+        
 
         lblNombre.setAlignmentX(
             Component.CENTER_ALIGNMENT
@@ -315,6 +320,7 @@ txtTotal.setText(
         txtIVA = new javax.swing.JTextField();
         txtSubtotal = new javax.swing.JTextField();
         txtTotal = new javax.swing.JTextField();
+        btnComprar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel8 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -351,16 +357,18 @@ txtTotal.setText(
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/derredisco.jpeg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/useras.jpg"))); // NOI18N
 
         jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(51, 0, 255));
         jTextField1.setFont(new java.awt.Font("Bebas Neue", 3, 18)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("Administrador");
 
         btnAgregar.setBackground(new java.awt.Color(51, 51, 255));
         btnAgregar.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregar.setText("Agregar Producto");
         btnAgregar.setToolTipText("");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -371,26 +379,38 @@ txtTotal.setText(
 
         jButton2.setBackground(new java.awt.Color(51, 0, 255));
         jButton2.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Ventas");
 
         jButton3.setBackground(new java.awt.Color(255, 51, 51));
         jButton3.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Cerrar Sesion");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(25, 25, 25))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(40, 40, 40)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(25, 25, 25)
+                            .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -436,17 +456,17 @@ txtTotal.setText(
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 0, 255));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("IVA");
 
         jLabel6.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Subtotal");
 
         jLabel7.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Total");
 
@@ -468,6 +488,13 @@ txtTotal.setText(
         txtTotal.setForeground(new java.awt.Color(51, 0, 255));
         txtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        btnComprar.setText("Finalizar Compra");
+        btnComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -484,9 +511,14 @@ txtTotal.setText(
                         .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(117, 117, 117)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(183, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnComprar, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                        .addGap(24, 24, 24))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -495,7 +527,8 @@ txtTotal.setText(
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -507,7 +540,7 @@ txtTotal.setText(
 
         jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 550, 700, -1));
 
-        jPanel8.setLayout(new java.awt.GridLayout());
+        jPanel8.setLayout(new java.awt.GridLayout(1, 0));
         jScrollPane1.setViewportView(jPanel8);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 520, 480));
@@ -582,9 +615,51 @@ txtTotal.setText(
          CrudProductos crud = new CrudProductos();
 
     crud.setVisible(true);
-
-    this.dispose();
+    
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+ java.util.List<String[]> itemsCarrito = new java.util.ArrayList<>();        
+ 
+// Crear ventana del ticket
+        
+JDialog ticket = new JDialog(this, "Ticket de Venta", true);
+ticket.setSize(400, 500);
+ticket.setLocationRelativeTo(this);
+
+// Construir el texto del ticket
+StringBuilder sb = new StringBuilder();
+sb.append("================================\n");
+sb.append("        VINIL'S HOUSE\n");
+sb.append("================================\n\n");
+
+for (String[] item : itemsCarrito) {
+    sb.append(item[0]).append(" - ").append(item[1]).append("\n");
+    sb.append("  ").append(item[2]).append(" x $").append(item[3])
+      .append("  =  $").append(item[4]).append("\n\n");
+}
+
+sb.append("--------------------------------\n");
+sb.append("Subtotal: $").append(String.format("%.2f", subtotal)).append("\n");
+sb.append("IVA:      $").append(String.format("%.2f", iva)).append("\n");
+sb.append("TOTAL:    $").append(String.format("%.2f", totalFinal)).append("\n");
+sb.append("================================\n");
+sb.append("     ¡Gracias por tu compra!\n");
+sb.append("================================");
+
+// Mostrar ticket
+javax.swing.JTextArea area = new javax.swing.JTextArea(sb.toString());
+area.setEditable(false);
+area.setFont(new java.awt.Font("Monospaced", java.awt.Font.PLAIN, 13));
+ticket.add(new javax.swing.JScrollPane(area));
+ticket.setVisible(true);
+
+    }//GEN-LAST:event_btnComprarActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+Login login = new Login();
+login.setVisible(true);
+this.dispose();    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -609,10 +684,12 @@ txtTotal.setText(
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new Principal().setVisible(true));
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnComprar;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
