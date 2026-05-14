@@ -5,16 +5,20 @@
 package ventavinilos;
 
 /**
+ * Clase principal creada por NetBeans al iniciar el proyecto.
  *
- * @author jesusrosales
+ * En esta aplicacion la ventana que se ejecuta es Login, por eso este main no
+ * contiene logica. Se conserva como punto de entrada alternativo del paquete.
  */
 public class VentaVinilos {
 
     /**
-     * @param args the command line arguments
+     * Metodo principal estandar de Java.
+     *
+     * @param args argumentos recibidos desde consola, no utilizados aqui.
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // La aplicacion se inicia desde InterfazG.Login.
     }
     
 }

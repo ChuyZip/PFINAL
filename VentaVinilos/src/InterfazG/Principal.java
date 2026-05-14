@@ -22,28 +22,39 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 
 /**
+ * Ventana principal del sistema.
  *
- * @author jesusrosales
+ * Muestra los productos disponibles, permite agregarlos al carrito, calcula el
+ * subtotal, IVA y total de la compra, y da acceso al CRUD de productos.
  */
 public class Principal extends javax.swing.JFrame {
     
+    // Esta es una variable de tipo double que guarda el subtotal de la venta actual.
     double subtotal = 0;
+
+    // Esta es una variable de tipo double que guarda el IVA calculado.
     double iva = 0;
+
+    // Esta es una variable de tipo double que guarda el total final de la compra.
     double totalFinal = 0;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Principal.class.getName());
 
     /**
-     * Creates new form Principal
+     * Constructor de la ventana principal.
+     *
+     * Configura los paneles, centra la ventana, inicializa los importes en cero
+     * y carga visualmente los productos desde BaseDatos.
      */
     public Principal() {
         initComponents();
         setLocationRelativeTo(null);
         
-        
+        // GridLayout acomoda las tarjetas de productos en 3 columnas.
          jPanel8.setLayout(new GridLayout(0, 3, 15, 15));
         mostrarProductos();
         
+        // BoxLayout acomoda los productos del carrito de arriba hacia abajo.
         jPanel6.setLayout(
     new BoxLayout(jPanel6, BoxLayout.Y_AXIS));
         
@@ -60,16 +71,46 @@ public class Principal extends javax.swing.JFrame {
         
         
     }
+
+    /**
+     * Carga una imagen de forma segura para los componentes de la interfaz.
+     *
+     * Primero la busca como recurso del proyecto y, si NetBeans no la copio a
+     * build/classes, intenta cargarla desde la carpeta src.
+     */
+    private javax.swing.ImageIcon cargarIcono(String ruta) {
+        // Esta es una variable de tipo URL que guarda la ubicacion del recurso.
+        java.net.URL ubicacion = getClass().getResource(ruta);
+
+        if (ubicacion != null) {
+            return new javax.swing.ImageIcon(ubicacion);
+        }
+
+        // Esta es una variable de tipo File que representa la imagen en src.
+        java.io.File archivo = new java.io.File("src", ruta.replaceFirst("^/", ""));
+
+        if (archivo.exists()) {
+            return new javax.swing.ImageIcon(archivo.getAbsolutePath());
+        }
+
+        return new javax.swing.ImageIcon();
+    }
     
+    /**
+     * Dibuja en pantalla todos los productos guardados en BaseDatos.
+     *
+     * Por cada Producto se crea una tarjeta con nombre, artista, precio, un
+     * selector de cantidad y un boton para agregarlo al carrito.
+     */
     private void mostrarProductos() {
 
-    // limpiar panel
+    // Limpia el panel para evitar duplicar productos al refrescar.
     jPanel8.removeAll();
 
-    // recorrer productos
+    // Recorre la lista principal de productos.
     for (Producto p : BaseDatos.listaProductos) {
 
-        // PANEL PRODUCTO
+        // Panel que representa visualmente un solo producto.
         JPanel panelProducto = new JPanel();
         
     panelProducto.setPreferredSize(
@@ -85,7 +126,7 @@ public class Principal extends javax.swing.JFrame {
             new BoxLayout(panelProducto, BoxLayout.Y_AXIS)
         );
 
-        // NOMBRE
+        // Etiqueta con el nombre del album.
         JLabel lblNombre =
             new JLabel(p.getNombre());
         
@@ -94,7 +135,7 @@ public class Principal extends javax.swing.JFrame {
             Component.CENTER_ALIGNMENT
         );
 
-        // ARTISTA
+        // Etiqueta con el artista del album.
         JLabel lblArtista =
             new JLabel(p.getArtista());
 
@@ -102,7 +143,7 @@ public class Principal extends javax.swing.JFrame {
             Component.CENTER_ALIGNMENT
         );
 
-        // PRECIO
+        // Etiqueta con el precio unitario.
         JLabel lblPrecio =
             new JLabel("$" + p.getPrecio());
 
@@ -110,7 +151,7 @@ public class Principal extends javax.swing.JFrame {
             Component.CENTER_ALIGNMENT
         );
 
-        // CANTIDAD
+        // Texto que indica el selector de cantidad.
         JLabel lblCantidad =
             new JLabel("Cantidad");
 
@@ -118,14 +159,14 @@ public class Principal extends javax.swing.JFrame {
             Component.CENTER_ALIGNMENT
         );
 
-        // SPINNER
+        // Spinner usado para elegir cuantas unidades se agregaran al carrito.
         JSpinner spCantidad = new JSpinner();
 
         spCantidad.setMaximumSize(
             new Dimension(60, 25)
         );
 
-        // BOTON
+        // Boton que intenta agregar el producto seleccionado al carrito.
         JButton btnAgregar =
             new JButton("Add to Cart");
         
@@ -136,16 +177,17 @@ public class Principal extends javax.swing.JFrame {
             Component.CENTER_ALIGNMENT
         );
 
-        // EVENTO BOTON
+        // Evento del boton: valida cantidad y stock antes de agregar.
         btnAgregar.addActionListener(e -> {
 
     int cantidad =
         (int) spCantidad.getValue();
 
+    // No se permite agregar cero o cantidades negativas.
     if(cantidad <= 0){JOptionPane.showMessageDialog(null,"La cantidad debe ser mayor a 0");
     return;}
     
-    // VALIDAR STOCK
+    // Valida que exista suficiente inventario.
     if(cantidad > p.getStock()){
 
         JOptionPane.showMessageDialog(
@@ -159,7 +201,7 @@ public class Principal extends javax.swing.JFrame {
     agregarAlCarrito(p, cantidad);
 });
 
-         //AGREGAR COMPONENTES
+         // Se agregan los componentes a la tarjeta del producto.
         panelProducto.add(Box.createVerticalStrut(10));
         panelProducto.add(lblNombre);
         
@@ -178,21 +220,28 @@ public class Principal extends javax.swing.JFrame {
         panelProducto.add(Box.createVerticalStrut(10));
         panelProducto.add(btnAgregar);
 
-        // AGREGAR AL PANEL PRINCIPAL
+        // Se agrega la tarjeta al panel principal de productos.
         jPanel8.add(panelProducto);
     }
 
-    // refrescar
+    // Revalida y repinta para que Swing muestre los cambios en pantalla.
     jPanel8.revalidate();
 
     jPanel8.repaint();
 }
     
+    /**
+     * Agrega un producto al carrito visual y actualiza los importes.
+     *
+     * @param p producto seleccionado
+     * @param cantidad unidades que se desean comprar
+     */
     private void agregarAlCarrito(
     Producto p,
     int cantidad
 ) {
 
+    // Panel que representa una linea del carrito.
     JPanel itemCarrito = new JPanel();
 
     itemCarrito.setMaximumSize(
@@ -209,7 +258,7 @@ public class Principal extends javax.swing.JFrame {
         new BoxLayout(itemCarrito, BoxLayout.Y_AXIS)
     );
 
-    // NOMBRE
+    // Nombre del producto agregado.
     JLabel lblNombre =
         new JLabel(p.getNombre());
 
@@ -217,7 +266,7 @@ public class Principal extends javax.swing.JFrame {
         Component.CENTER_ALIGNMENT
     );
 
-    // INFO
+    // Informacion de cantidad y precio unitario.
     JLabel lblInfo =
         new JLabel(
             cantidad
@@ -229,7 +278,7 @@ public class Principal extends javax.swing.JFrame {
         Component.CENTER_ALIGNMENT
     );
 
-    // TOTAL
+    // Total de esta linea del carrito: cantidad por precio.
     double total =
         cantidad * p.getPrecio();
 
@@ -242,7 +291,7 @@ public class Principal extends javax.swing.JFrame {
         Component.CENTER_ALIGNMENT
     );
 
-    // AGREGAR
+    // Se agregan etiquetas y espacios al panel del item.
     itemCarrito.add(
         Box.createVerticalStrut(5)
     );
@@ -257,24 +306,24 @@ public class Principal extends javax.swing.JFrame {
         Box.createVerticalStrut(5)
     );
 
-    // AGREGAR A PANEL DERECHO
+    // Se agrega el item al panel derecho, que funciona como carrito.
     jPanel6.add(itemCarrito);
 
-    // REFRESCAR
+    // Se refresca el panel para mostrar el nuevo item.
     jPanel6.revalidate();
 
     jPanel6.repaint();
     
-    // SUBTOTAL
+// Suma el total del item al subtotal de la venta.
 subtotal += total;
 
-// IVA
+// Calcula el IVA del 16%.
 iva = subtotal * 0.16;
 
-// TOTAL
+// Calcula el total final sumando subtotal mas IVA.
 totalFinal = subtotal + iva;
 
-// MOSTRAR EN CAMPOS
+// Muestra los importes formateados con dos decimales.
 txtSubtotal.setText(
     String.format("%.2f", subtotal)
 );
@@ -287,7 +336,7 @@ txtTotal.setText(
     String.format("%.2f", totalFinal)
 );
     
-    // RESTAR STOCK
+    // Resta del inventario la cantidad agregada al carrito.
     p.setStock(
     p.getStock() - cantidad
             
@@ -357,7 +406,7 @@ txtTotal.setText(
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/useras.jpg"))); // NOI18N
+        jLabel2.setIcon(cargarIcono("/Recursos/useras.jpg")); // NOI18N
 
         jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(51, 0, 255));
@@ -612,6 +661,7 @@ txtTotal.setText(
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+         // Abre la ventana donde se pueden agregar, buscar, editar o eliminar productos.
          CrudProductos crud = new CrudProductos();
 
     crud.setVisible(true);
@@ -619,6 +669,8 @@ txtTotal.setText(
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+ // Lista preparada para guardar detalles del carrito en el ticket.
+ // Actualmente no se llena; el ticket muestra principalmente los totales.
  java.util.List<String[]> itemsCarrito = new java.util.ArrayList<>();        
  
 // Crear ventana del ticket
@@ -634,6 +686,7 @@ sb.append("        VINIL'S HOUSE\n");
 sb.append("================================\n\n");
 
 for (String[] item : itemsCarrito) {
+    // Cada arreglo representa: producto, artista, cantidad, precio y total.
     sb.append(item[0]).append(" - ").append(item[1]).append("\n");
     sb.append("  ").append(item[2]).append(" x $").append(item[3])
       .append("  =  $").append(item[4]).append("\n\n");
@@ -657,6 +710,7 @@ ticket.setVisible(true);
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+// Cierra la sesion actual y regresa a la ventana de Login.
 Login login = new Login();
 login.setVisible(true);
 this.dispose();    }//GEN-LAST:event_jButton3ActionPerformed

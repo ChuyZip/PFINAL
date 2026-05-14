@@ -7,21 +7,52 @@ package InterfazG;
 import javax.swing.JOptionPane;
 
 /**
+ * Ventana de inicio de sesion.
  *
- * @author jesusrosales
+ * Esta pantalla valida un usuario y una contrasena sencillos. Si los datos son
+ * correctos, abre la ventana Principal; si no, muestra un mensaje de error.
  */
 public class Login extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
 
     /**
-     * Creates new form Login
+     * Constructor de la ventana Login.
+     *
+     * initComponents() crea todos los controles disenados en NetBeans. Despues
+     * se centra la ventana en la pantalla y se configura el panel principal.
      */
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
         jPanel1.setOpaque(true);
         
+    }
+
+    /**
+     * Carga una imagen de forma segura.
+     *
+     * Primero intenta buscarla dentro del classpath, que es la forma normal
+     * cuando NetBeans copia los recursos a build/classes. Si no la encuentra,
+     * intenta cargarla directamente desde la carpeta src. Esto evita que el
+     * programa falle con NullPointerException cuando la imagen no fue copiada.
+     */
+    private javax.swing.ImageIcon cargarIcono(String ruta) {
+        // Esta es una variable de tipo URL que guarda la ubicacion del recurso.
+        java.net.URL ubicacion = getClass().getResource(ruta);
+
+        if (ubicacion != null) {
+            return new javax.swing.ImageIcon(ubicacion);
+        }
+
+        // Esta es una variable de tipo File que busca la imagen dentro de src.
+        java.io.File archivo = new java.io.File("src", ruta.replaceFirst("^/", ""));
+
+        if (archivo.exists()) {
+            return new javax.swing.ImageIcon(archivo.getAbsolutePath());
+        }
+
+        return new javax.swing.ImageIcon();
     }
 
     /**
@@ -76,7 +107,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/derredisco.jpeg"))); // NOI18N
+        jLabel2.setIcon(cargarIcono("/Recursos/derredisco.jpeg")); // NOI18N
         jLabel2.setText("jLabel2");
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
@@ -167,23 +198,27 @@ public class Login extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
          
-        
+        // Se obtiene el texto escrito por el usuario en los campos del login.
         String usuario = txtUsuario.getText();
 
     String password =
     String.valueOf(txtPassword.getPassword());
 
+    // Validacion simple: usuario admin y contrasena 1234.
     if(usuario.equals("admin")
     && password.equals("1234")){
 
+        // Si los datos son correctos, se abre la pantalla principal.
         Principal p = new Principal();
 
         p.setVisible(true);
 
+        // Se cierra la ventana de login para no dejar pantallas abiertas.
         this.dispose();
 
     }else{
 
+        // Si falla la validacion, se informa al usuario.
         JOptionPane.showMessageDialog(
         null,
         "Usuario o contraseña incorrectos"
@@ -196,6 +231,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarInputMethodTextChanged
 
     private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        // Permite iniciar sesion presionando Enter en el campo de contrasena.
         if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
     btnIngresarActionPerformed(null);
 }

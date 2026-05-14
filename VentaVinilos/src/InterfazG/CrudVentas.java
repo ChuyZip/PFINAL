@@ -5,15 +5,20 @@
 package InterfazG;
 
 /**
+ * Ventana preparada para el modulo de ventas.
  *
- * @author jesusrosales
+ * Actualmente solo contiene el formulario base generado por NetBeans. Puede
+ * utilizarse despues para listar ventas realizadas, consultar tickets o guardar
+ * historiales de compra.
  */
 public class CrudVentas extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CrudVentas.class.getName());
 
     /**
-     * Creates new form CrudVentas
+     * Constructor de la ventana de ventas.
+     *
+     * Por ahora solo inicializa los componentes creados en el editor grafico.
      */
     public CrudVentas() {
         initComponents();

@@ -5,16 +5,36 @@
 package modelos;
 
 /**
+ * Modelo que representa un producto de la tienda.
  *
- * @author jesusrosales
+ * En este proyecto cada producto es un disco de vinilo. La clase guarda los
+ * datos principales que se muestran en la interfaz y que se usan para calcular
+ * las ventas: id, nombre del album, artista, precio y stock disponible.
  */
 public class Producto {
+
+    // Esta es una variable de tipo int que guarda el identificador unico del producto.
     private int id;
+
+    // Esta es una variable de tipo String que guarda el nombre del album o disco.
     private String nombre;
+
+    // Esta es una variable de tipo String que guarda el nombre del artista.
     private String artista;
+
+    // Esta es una variable de tipo double que guarda el precio unitario del producto.
     private double precio;
+
+    // Esta es una variable de tipo int que guarda la cantidad disponible en inventario.
     private int stock;
 
+    /**
+     * Constructor de Producto.
+     *
+     * Recibe todos los datos necesarios y los guarda en los atributos del
+     * objeto. Se usa al precargar productos y tambien al agregar nuevos desde
+     * la ventana CRUD.
+     */
     public Producto(int id, String nombre,
             String artista, double precio,
             int stock) {
@@ -26,6 +46,7 @@ public class Producto {
         this.stock = stock;
     }
 
+    // Los metodos get permiten consultar los valores privados del objeto.
     public int getId() {
         return id;
     }
@@ -46,6 +67,7 @@ public class Producto {
         return stock;
     }
 
+    // Los metodos set permiten modificar los datos editables del producto.
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

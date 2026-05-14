@@ -5,8 +5,11 @@
 package modelos;
 
 /**
+ * Modelo reservado para representar una venta.
  *
- * @author jesusrosales
+ * Actualmente la venta se calcula directamente en la pantalla Principal, pero
+ * esta clase queda preparada para que despues se puedan guardar datos como
+ * folio, fecha, productos vendidos, subtotal, IVA y total.
  */
 public class Venta {
     

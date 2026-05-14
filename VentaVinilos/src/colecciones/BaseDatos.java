@@ -10,21 +10,32 @@ import java.util.HashSet;
 import modelos.Producto;
 
 /**
+ * Clase que funciona como almacenamiento temporal del sistema.
  *
- * @author jesusrosales
+ * Como el proyecto no usa una base de datos real, aqui se guardan los productos
+ * en colecciones de Java. Al ser atributos static, se pueden consultar desde
+ * cualquier ventana sin crear un objeto BaseDatos.
  */
 public class BaseDatos {
 
+    // Esta es una variable de tipo ArrayList<Producto> que guarda los productos en orden de insercion.
     public static ArrayList<Producto>
     listaProductos = new ArrayList<>();
 
+    // Esta es una variable de tipo HashMap<Integer, Producto> que busca productos usando el id como llave.
     public static HashMap<Integer, Producto>
     mapaProductos = new HashMap<>();
 
+    // Esta es una variable de tipo HashSet<String> que evita guardar categorias repetidas.
     public static HashSet<String>
     categorias = new HashSet<>();
 
-    // METODO
+    /**
+     * Crea un objeto Producto y lo agrega a las colecciones del sistema.
+     *
+     * Se guarda en el ArrayList para mostrarlo en tablas/paneles, y tambien en
+     * el HashMap para tener una busqueda directa por id.
+     */
     public static void agregarProducto(
         int id,
         String nombre,
@@ -49,7 +60,8 @@ public class BaseDatos {
     }
 
 
-    // PRODUCTOS PRECARGADOS
+    // Bloque static: se ejecuta una sola vez cuando se carga la clase.
+    // Aqui se agregan productos iniciales para que la tienda tenga inventario.
     static {
 
         agregarProducto(1,"DAMN","Kendrick Lamar",850,10);
@@ -104,4 +116,3 @@ public class BaseDatos {
         agregarProducto(50, "Random Access Memories", "Daft Punk", 1150, 6);
     }
 }
-

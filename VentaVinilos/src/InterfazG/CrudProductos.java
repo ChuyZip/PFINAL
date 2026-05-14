@@ -10,15 +10,21 @@ import javax.swing.table.DefaultTableModel;
 
 
 /**
+ * Ventana CRUD de productos.
  *
- * @author jesusrosales
+ * CRUD significa Create, Read, Update y Delete: crear, leer/buscar, actualizar
+ * y eliminar. Esta pantalla permite administrar el inventario de vinilos que se
+ * guarda temporalmente en BaseDatos.
  */
 public class CrudProductos extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CrudProductos.class.getName());
 
     /**
-     * Creates new form CrudProductos
+     * Constructor de la ventana CRUD.
+     *
+     * Inicializa los componentes, centra la ventana, evita cerrar toda la app al
+     * cerrar esta pantalla y carga la tabla con los productos existentes.
      */
     public CrudProductos() {
         initComponents();
@@ -30,14 +36,24 @@ public class CrudProductos extends javax.swing.JFrame {
        
         mostrarProductos();
     }
+
+    /**
+     * Carga la lista de productos en la JTable.
+     *
+     * Primero se limpia el modelo de la tabla y despues se agrega una fila por
+     * cada producto de BaseDatos.listaProductos.
+     */
     public void mostrarProductos() {
 
+    // Se obtiene el modelo de la tabla para poder modificar sus filas.
     DefaultTableModel modelo =
     (DefaultTableModel)
     tablaProductos.getModel();
 
+    // Limpia las filas actuales para no duplicar informacion.
     modelo.setRowCount(0);
 
+    // Recorre el inventario y crea una fila con los datos de cada producto.
     for (Producto p :BaseDatos.listaProductos) {
 
         Object fila[] = {
@@ -356,6 +372,7 @@ public class CrudProductos extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
          try {
 
+        // Valida que ningun campo este vacio antes de crear el producto.
         if(txtID.getText().isEmpty() ||
            txtAlbum.getText().isEmpty() ||
            txtArtista.getText().isEmpty() ||
@@ -367,6 +384,7 @@ public class CrudProductos extends javax.swing.JFrame {
             return;
         }
 
+        // Convierte los textos numericos a int o double.
         int id =
         Integer.parseInt(txtID.getText());
 
@@ -384,6 +402,7 @@ public class CrudProductos extends javax.swing.JFrame {
         Integer.parseInt(
         txtStock.getText());
 
+        // Crea un nuevo objeto Producto con los datos del formulario.
         Producto p = new Producto(
         id,
         nombre,
@@ -392,12 +411,15 @@ public class CrudProductos extends javax.swing.JFrame {
         stock
         );
 
+        // Agrega el producto a las dos colecciones de BaseDatos.
         BaseDatos.listaProductos.add(p);
 
         BaseDatos.mapaProductos.put(id, p);
 
+        // Refresca la tabla para mostrar el producto nuevo.
         mostrarProductos();
 
+        // Limpia los campos para capturar otro producto.
         txtID.setText("");
         txtAlbum.setText("");
         txtArtista.setText("");
@@ -406,6 +428,7 @@ public class CrudProductos extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(null,"Producto agregado");
         
+        // Regresa a la ventana principal para ver el inventario actualizado.
         Principal principal = new Principal();
 
         principal.setVisible(true);
@@ -414,14 +437,17 @@ public class CrudProductos extends javax.swing.JFrame {
 
     } catch (NumberFormatException e) {
 
+        // Si el usuario escribe letras en campos numericos, se muestra error.
         JOptionPane.showMessageDialog(null,"ID, Precio y Stock deben ser números");
     }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // Pide al usuario el artista que desea buscar.
         String artistaBuscar = 
         JOptionPane.showInputDialog(null,"Ingresa el nombre del artista:");
 
+    // Si cancela o deja vacio el texto, no se hace ninguna busqueda.
     if (artistaBuscar == null
     || artistaBuscar.isEmpty()) {
 
@@ -430,6 +456,7 @@ public class CrudProductos extends javax.swing.JFrame {
 
     boolean encontrado = false;
 
+    // Recorre todos los productos comparando el artista sin importar mayusculas.
     for (Producto p :
     BaseDatos.listaProductos) {
 
@@ -437,6 +464,7 @@ public class CrudProductos extends javax.swing.JFrame {
         .equalsIgnoreCase(
         artistaBuscar)) {
 
+            // Al encontrarlo, se cargan sus datos en los campos del formulario.
             txtID.setText(
             String.valueOf(p.getId()));
 
@@ -452,7 +480,7 @@ public class CrudProductos extends javax.swing.JFrame {
             txtStock.setText(
             String.valueOf(p.getStock()));
             
-             // SELECCIONAR FILA EN LA TABLA
+             // Selecciona en la tabla la fila del producto encontrado.
             int fila =
             BaseDatos.listaProductos.indexOf(p);
 
@@ -482,9 +510,11 @@ public class CrudProductos extends javax.swing.JFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
 
+        // Usa el ID escrito en el formulario para saber que producto editar.
         int id =
         Integer.parseInt(txtID.getText());
 
+        // Busca el producto con ese ID y actualiza sus atributos.
         for (Producto p :
         BaseDatos.listaProductos) {
 
@@ -506,6 +536,7 @@ public class CrudProductos extends javax.swing.JFrame {
             }
         }
 
+        // Refresca la tabla y limpia el formulario.
         mostrarProductos();
 
         txtID.setText("");
@@ -521,6 +552,7 @@ public class CrudProductos extends javax.swing.JFrame {
 
     } catch (Exception e) {
 
+        // Cualquier error de conversion o busqueda se informa al usuario.
         JOptionPane.showMessageDialog(
         null,
         "Error al actualizar"
@@ -529,11 +561,13 @@ public class CrudProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
+        // Obtiene el indice de la fila seleccionada por el usuario.
         int fila =
     tablaProductos.getSelectedRow();
 
     if (fila != -1) {
 
+        // Copia los datos de la fila seleccionada a los campos del formulario.
         txtID.setText(
         tablaProductos.getValueAt(
         fila, 0).toString());
@@ -559,6 +593,7 @@ public class CrudProductos extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
          try {
 
+        // Para eliminar se necesita tener un producto seleccionado o un ID escrito.
         if (txtID.getText().isEmpty()) {
 
             JOptionPane.showMessageDialog(
@@ -569,6 +604,7 @@ public class CrudProductos extends javax.swing.JFrame {
             return;
         }
 
+        // Confirma la eliminacion para evitar borrar productos por accidente.
         int confirmacion =
         JOptionPane.showConfirmDialog(
         null,
@@ -580,6 +616,7 @@ public class CrudProductos extends javax.swing.JFrame {
         if (confirmacion ==
         JOptionPane.YES_OPTION) {
 
+            // Convierte el ID y elimina el producto de ambas colecciones.
             int id =
             Integer.parseInt(
             txtID.getText());
@@ -591,6 +628,7 @@ public class CrudProductos extends javax.swing.JFrame {
 
             BaseDatos.mapaProductos.remove(id);
 
+            // Actualiza la tabla y limpia el formulario.
             mostrarProductos();
 
             txtID.setText("");
