@@ -24,6 +24,12 @@ public class CrudVentas extends javax.swing.JFrame {
      */
     public CrudVentas() {
         initComponents();
+        
+        DefaultTableModel modelo =
+        (DefaultTableModel) tablaVentas.getModel();
+
+        modelo.setRowCount(0);
+        
         cargarProductos();
         setLocationRelativeTo(null);
     }
