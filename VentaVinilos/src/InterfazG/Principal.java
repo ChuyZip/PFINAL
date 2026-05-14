@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -306,6 +307,7 @@ txtTotal.setText(
         txtIVA = new javax.swing.JTextField();
         txtSubtotal = new javax.swing.JTextField();
         txtTotal = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel8 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -367,6 +369,11 @@ txtTotal.setText(
         jButton3.setBackground(new java.awt.Color(255, 51, 51));
         jButton3.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
         jButton3.setText("Cerrar Sesion");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -459,6 +466,13 @@ txtTotal.setText(
         txtTotal.setForeground(new java.awt.Color(51, 0, 255));
         txtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jButton1.setText("Finalizar Compra");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -475,9 +489,14 @@ txtTotal.setText(
                         .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(117, 117, 117)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(183, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(24, 24, 24))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -486,7 +505,8 @@ txtTotal.setText(
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -498,7 +518,7 @@ txtTotal.setText(
 
         jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 550, 700, -1));
 
-        jPanel8.setLayout(new java.awt.GridLayout());
+        jPanel8.setLayout(new java.awt.GridLayout(1, 0));
         jScrollPane1.setViewportView(jPanel8);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 520, 480));
@@ -575,7 +595,51 @@ txtTotal.setText(
     crud.setVisible(true);
 
     this.dispose();
+    
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+ java.util.List<String[]> itemsCarrito = new java.util.ArrayList<>();        
+ 
+// Crear ventana del ticket
+        
+JDialog ticket = new JDialog(this, "Ticket de Venta", true);
+ticket.setSize(400, 500);
+ticket.setLocationRelativeTo(this);
+
+// Construir el texto del ticket
+StringBuilder sb = new StringBuilder();
+sb.append("================================\n");
+sb.append("        VINIL'S HOUSE\n");
+sb.append("================================\n\n");
+
+for (String[] item : itemsCarrito) {
+    sb.append(item[0]).append(" - ").append(item[1]).append("\n");
+    sb.append("  ").append(item[2]).append(" x $").append(item[3])
+      .append("  =  $").append(item[4]).append("\n\n");
+}
+
+sb.append("--------------------------------\n");
+sb.append("Subtotal: $").append(String.format("%.2f", subtotal)).append("\n");
+sb.append("IVA:      $").append(String.format("%.2f", iva)).append("\n");
+sb.append("TOTAL:    $").append(String.format("%.2f", totalFinal)).append("\n");
+sb.append("================================\n");
+sb.append("     ¡Gracias por tu compra!\n");
+sb.append("================================");
+
+// Mostrar ticket
+javax.swing.JTextArea area = new javax.swing.JTextArea(sb.toString());
+area.setEditable(false);
+area.setFont(new java.awt.Font("Monospaced", java.awt.Font.PLAIN, 13));
+ticket.add(new javax.swing.JScrollPane(area));
+ticket.setVisible(true);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+Login login = new Login();
+login.setVisible(true);
+this.dispose();    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -600,10 +664,12 @@ txtTotal.setText(
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new Principal().setVisible(true));
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
