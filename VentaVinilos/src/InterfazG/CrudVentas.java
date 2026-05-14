@@ -25,7 +25,7 @@ public class CrudVentas extends javax.swing.JFrame {
     public CrudVentas() {
         initComponents();
         cargarProductos();
-        
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -61,24 +61,39 @@ public class CrudVentas extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(51, 51, 255));
         jLabel1.setText("REGISTRAR VENTA");
 
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(jLabel1.getFont());
+        jLabel2.setForeground(new java.awt.Color(51, 51, 255));
         jLabel2.setText("PRODUCTO");
 
         cbProductos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbProductos.addActionListener(this::cbProductosActionPerformed);
 
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(jLabel1.getFont());
+        jLabel3.setForeground(new java.awt.Color(51, 51, 255));
         jLabel3.setText("CANTIDAD");
 
+        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel4.setFont(jLabel1.getFont());
+        jLabel4.setForeground(new java.awt.Color(51, 51, 255));
         jLabel4.setText("PRECIO");
 
         tfPrecio.setEditable(false);
         tfPrecio.addActionListener(this::tfPrecioActionPerformed);
 
+        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel5.setFont(jLabel1.getFont());
+        jLabel5.setForeground(new java.awt.Color(51, 51, 255));
         jLabel5.setText("TOTAL");
 
         tfTotal.setEditable(false);
         tfTotal.addActionListener(this::tfTotalActionPerformed);
 
+        btnVender.setFont(jLabel1.getFont());
+        btnVender.setForeground(new java.awt.Color(51, 51, 255));
         btnVender.setText("Realizar Venta");
+        btnVender.addActionListener(this::btnVenderActionPerformed);
 
         jScrollPane1.setToolTipText("");
 
@@ -109,15 +124,15 @@ public class CrudVentas extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(44, 44, 44)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2)
                                     .addComponent(cbProductos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3)
                                     .addComponent(tfCantidad)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tfPrecio)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tfTotal)
-                                    .addComponent(btnVender, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))))
+                                    .addComponent(btnVender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 249, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -149,7 +164,7 @@ public class CrudVentas extends javax.swing.JFrame {
                 .addComponent(btnVender)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -167,6 +182,10 @@ public class CrudVentas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVenderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,7 +238,13 @@ public class CrudVentas extends javax.swing.JFrame {
     }
   }
     
-    private void cbProductosActionPerformed(java.awt.event.ActionEvent evt) {
+
+
+private void cbProductosActionPerformed(java.awt.event.ActionEvent evt) {
+
+    if (cbProductos.getSelectedItem() == null) {
+        return;
+    }
 
     String nombreAlbum =
         cbProductos.getSelectedItem().toString();
