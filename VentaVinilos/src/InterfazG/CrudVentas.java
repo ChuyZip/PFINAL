@@ -5,7 +5,7 @@
 package InterfazG;
 import modelos.Producto;
 import colecciones.BaseDatos;
-
+import javax.swing.table.DefaultTableModel;
 /**
  * Ventana preparada para el modulo de ventas.
  *
@@ -15,7 +15,6 @@ import colecciones.BaseDatos;
  */
 public class CrudVentas extends javax.swing.JFrame {
     
-    // Esta es una variable de tipo Logger que guarda el registro de errores de la ventana CrudVentas.
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CrudVentas.class.getName());
 
     /**
@@ -75,6 +74,12 @@ public class CrudVentas extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(51, 51, 255));
         jLabel3.setText("CANTIDAD");
 
+        tfCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfCantidadKeyReleased(evt);
+            }
+        });
+
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(jLabel1.getFont());
         jLabel4.setForeground(new java.awt.Color(51, 51, 255));
@@ -119,26 +124,26 @@ public class CrudVentas extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(233, 233, 233)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(44, 44, 44)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(cbProductos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(tfCantidad)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tfPrecio)
                                     .addComponent(tfTotal)
                                     .addComponent(btnVender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(233, 233, 233)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 116, Short.MAX_VALUE)))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 249, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -187,7 +192,43 @@ public class CrudVentas extends javax.swing.JFrame {
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
         // TODO add your handling code here:
+        
+        DefaultTableModel modelo =
+    (DefaultTableModel) tablaVentas.getModel();
+
+    modelo.addRow(new Object[] {
+
+    cbProductos.getSelectedItem().toString(),
+    tfCantidad.getText(),
+    tfPrecio.getText(),
+    tfTotal.getText()
+    });
+    
+    tfCantidad.setText("");
+    tfTotal.setText("");    
     }//GEN-LAST:event_btnVenderActionPerformed
+
+    private void tfCantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCantidadKeyReleased
+        // TODO add your handling code here:
+        
+        try {
+
+    int cantidad =
+        Integer.parseInt(tfCantidad.getText());
+
+    double precio =
+        Double.parseDouble(tfPrecio.getText());
+
+    double total = cantidad * precio;
+
+    tfTotal.setText(String.valueOf(total));
+
+    } catch(NumberFormatException e) {
+
+    tfTotal.setText("");
+    }
+        
+    }//GEN-LAST:event_tfCantidadKeyReleased
 
     /**
      * @param args the command line arguments
@@ -215,40 +256,25 @@ public class CrudVentas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    // Esta es una variable de tipo JButton que guarda el boton para realizar una venta.
     private javax.swing.JButton btnVender;
-    // Esta es una variable de tipo JComboBox<String> que guarda la lista desplegable de productos.
     private javax.swing.JComboBox<String> cbProductos;
-    // Esta es una variable de tipo JLabel que guarda el titulo de la ventana de ventas.
     private javax.swing.JLabel jLabel1;
-    // Esta es una variable de tipo JLabel que guarda la etiqueta del campo producto.
     private javax.swing.JLabel jLabel2;
-    // Esta es una variable de tipo JLabel que guarda la etiqueta del campo cantidad.
     private javax.swing.JLabel jLabel3;
-    // Esta es una variable de tipo JLabel que guarda la etiqueta del campo precio.
     private javax.swing.JLabel jLabel4;
-    // Esta es una variable de tipo JLabel que guarda la etiqueta del campo total.
     private javax.swing.JLabel jLabel5;
-    // Esta es una variable de tipo JPanel que guarda el panel principal de la ventana.
     private javax.swing.JPanel jPanel1;
-    // Esta es una variable de tipo JScrollPane que guarda el desplazamiento de la tabla de ventas.
     private javax.swing.JScrollPane jScrollPane1;
-    // Esta es una variable de tipo JTable que guarda la tabla donde se muestran las ventas.
     private javax.swing.JTable tablaVentas;
-    // Esta es una variable de tipo JTextField que guarda la cantidad del producto vendido.
     private javax.swing.JTextField tfCantidad;
-    // Esta es una variable de tipo JTextField que guarda el precio del producto seleccionado.
     private javax.swing.JTextField tfPrecio;
-    // Esta es una variable de tipo JTextField que guarda el total de la venta.
     private javax.swing.JTextField tfTotal;
     // End of variables declaration//GEN-END:variables
 
-    // Este metodo carga los nombres de los productos en el combo de ventas.
     private void cargarProductos() {
 
     cbProductos.removeAllItems();
 
-    // Esta es una variable de tipo Producto que recorre cada producto guardado en la base de datos.
     for (Producto p : BaseDatos.listaProductos) {
 
         cbProductos.addItem(p.getNombre());
@@ -263,11 +289,9 @@ private void cbProductosActionPerformed(java.awt.event.ActionEvent evt) {
         return;
     }
 
-    // Esta es una variable de tipo String que guarda el nombre del album seleccionado.
     String nombreAlbum =
         cbProductos.getSelectedItem().toString();
 
-    // Esta es una variable de tipo Producto que recorre cada producto para buscar el album seleccionado.
     for (Producto p : BaseDatos.listaProductos) {
 
         if (p.getNombre().equals(nombreAlbum)) {
