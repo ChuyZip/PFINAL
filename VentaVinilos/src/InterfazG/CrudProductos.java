@@ -88,7 +88,7 @@ public class CrudProductos extends javax.swing.JFrame {
         label = new javax.swing.JLabel();
         jlabel4 = new javax.swing.JLabel();
         jlabel5 = new javax.swing.JLabel();
-        btnAgregar = new javax.swing.JButton();
+        btnAgregarCarrito = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
@@ -125,13 +125,13 @@ public class CrudProductos extends javax.swing.JFrame {
         jlabel5.setForeground(new java.awt.Color(51, 0, 255));
         jlabel5.setText("Stock");
 
-        btnAgregar.setBackground(new java.awt.Color(51, 0, 255));
-        btnAgregar.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
-        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar.setText("Agregar");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarCarrito.setBackground(new java.awt.Color(51, 0, 255));
+        btnAgregarCarrito.setFont(new java.awt.Font("Bebas Neue", 3, 14)); // NOI18N
+        btnAgregarCarrito.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarCarrito.setText("Agregar");
+        btnAgregarCarrito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
+                btnAgregarCarritoActionPerformed(evt);
             }
         });
 
@@ -287,7 +287,7 @@ public class CrudProductos extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAgregarCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(68, 68, 68)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(67, 67, 67)
@@ -344,7 +344,7 @@ public class CrudProductos extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregar)
+                    .addComponent(btnAgregarCarrito)
                     .addComponent(btnBuscar)
                     .addComponent(btnEditar)
                     .addComponent(btnEliminar))
@@ -369,7 +369,7 @@ public class CrudProductos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
 
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+    private void btnAgregarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCarritoActionPerformed
          try {
 
         // Valida que ningun campo este vacio antes de crear el producto.
@@ -440,7 +440,7 @@ public class CrudProductos extends javax.swing.JFrame {
         // Si el usuario escribe letras en campos numericos, se muestra error.
         JOptionPane.showMessageDialog(null,"ID, Precio y Stock deben ser números");
     }
-    }//GEN-LAST:event_btnAgregarActionPerformed
+    }//GEN-LAST:event_btnAgregarCarritoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // Pide al usuario el artista que desea buscar.
@@ -678,7 +678,7 @@ public class CrudProductos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnAgregarCarrito;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
