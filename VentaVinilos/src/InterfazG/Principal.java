@@ -9,6 +9,7 @@ import modelos.Producto;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Component;
+import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -36,11 +37,17 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-         jPanel8.setLayout(new java.awt.GridLayout(0, 5, 10, 10));
+         jPanel8.setLayout(new GridLayout(0, 3, 15, 15));
         mostrarProductos();
         
         jPanel6.setLayout(
     new BoxLayout(jPanel6, BoxLayout.Y_AXIS));
+        
+     jPanel8.setBackground(Color.BLACK);
+
+    jPanel6.setBackground(Color.BLACK);
+
+    jPanel7.setBackground(Color.BLACK);
         
     txtSubtotal.setText("0.00");
     txtIVA.setText("0.00");
@@ -60,14 +67,13 @@ public class Principal extends javax.swing.JFrame {
 
         // PANEL PRODUCTO
         JPanel panelProducto = new JPanel();
+        
+    panelProducto.setPreferredSize(
+            new Dimension(140, 170));
 
-        panelProducto.setPreferredSize(
-            new Dimension(140, 170)
-        );
+    panelProducto.setBackground(Color.WHITE);
 
-        panelProducto.setBackground(Color.WHITE);
-
-        panelProducto.setBorder(
+    panelProducto.setBorder(
             BorderFactory.createLineBorder(Color.GRAY)
         );
 
@@ -117,6 +123,9 @@ public class Principal extends javax.swing.JFrame {
         // BOTON
         JButton btnAgregar =
             new JButton("Add to Cart");
+        
+        btnAgregar.setMaximumSize(
+    new Dimension(120, 20));
 
         btnAgregar.setAlignmentX(
             Component.CENTER_ALIGNMENT

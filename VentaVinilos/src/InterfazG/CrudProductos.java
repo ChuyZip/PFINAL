@@ -23,6 +23,7 @@ public class CrudProductos extends javax.swing.JFrame {
      */
     public CrudProductos() {
         initComponents();
+        mostrarProductos();
     }
     public void mostrarProductos() {
 
@@ -32,8 +33,7 @@ public class CrudProductos extends javax.swing.JFrame {
 
     modelo.setRowCount(0);
 
-    for (Producto p :
-            BaseDatos.listaProductos) {
+    for (Producto p :BaseDatos.listaProductos) {
 
         Object fila[] = {
 
