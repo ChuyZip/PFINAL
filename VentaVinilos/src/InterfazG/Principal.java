@@ -406,7 +406,7 @@ txtTotal.setText(
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Usuario\\OneDrive\\Desktop\\Descargas\\calaca.jpg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/calaca.jpg"))); // NOI18N
 
         jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(51, 0, 255));
@@ -723,8 +723,10 @@ this.dispose();    }//GEN-LAST:event_jButton3ActionPerformed
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
         // TODO add your handling code here:
         
-            CrudVentas ventas = new CrudVentas();
-            ventas.setVisible(true);
+            CrudVentas Crudventas = new CrudVentas();
+            Crudventas.setVisible(true);
+                this.dispose();
+            
     }//GEN-LAST:event_btnVentasActionPerformed
 
     /**
